@@ -1,0 +1,8 @@
+name: Local Registry
+description: |
+  local registry with UI.
+version: v0.0.1
+category: Web
+maintainer: Sean Zhang
+license: The MIT license
+projectURL: https://github.com/zhangsean/rancher-catalog.git

@@ -1,0 +1,52 @@
+version: '2'
+.catalog:
+  name: Local registry with UI
+  version: v0.0.1
+  description: Local registry with a tiny UI.
+  uuid: local-registry-v0.0.1
+  minimum_rancher_version: v1.6
+  questions:
+    - variable: "REGISTRY_ADDR"
+      label: "Registry Address"
+      description: "Registry address for docker pull"
+      type: "string"
+      default: "hub.local.com"
+      required: true
+    - variable: "REGISTRY_ADDR_PORT"
+      label: "Registry address port"
+      description: "Registry address port, example: 80."
+      type: "integer"
+      default: "80"
+      required: true
+    - variable: "REGISTRY_UI_PORT"
+      label: "Registry UI Port"
+      description: "Registry UI port, must be different with registry address port, example: 88."
+      type: "integer"
+      default: "88"
+      required: true
+services:
+  registry:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 5000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
+  registry-ui:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 80
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreate
+      reinitializing_timeout: 60000
