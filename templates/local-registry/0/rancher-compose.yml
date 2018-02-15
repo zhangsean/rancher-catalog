@@ -1,9 +1,9 @@
 version: '2'
 .catalog:
   name: Local registry with UI
-  version: v0.0.1
+  version: v0.0.2
   description: Local registry with a tiny UI.
-  uuid: local-registry-v0.0.1
+  uuid: local-registry-v0.0.2
   minimum_rancher_version: v1.6
   questions:
     - variable: "REGISTRY_ADDR"
