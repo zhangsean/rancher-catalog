@@ -15,13 +15,13 @@ version: '2'
     - variable: "REGISTRY_ADDR_PORT"
       label: "Registry address port"
       description: "Registry address port, example: 80."
-      type: "integer"
+      type: "int"
       default: "80"
       required: true
     - variable: "REGISTRY_UI_PORT"
       label: "Registry UI Port"
       description: "Registry UI port, must be different with registry address port, example: 88."
-      type: "integer"
+      type: "int"
       default: "88"
       required: true
 services:
