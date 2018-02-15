@@ -12,7 +12,7 @@ services:
     image: zhangsean/tiny-registry-ui
     environment:
       REGISTRY_WEB: ${REGISTRY_ADDR}
-      REGISTRY_API: http://registry/v2
+      REGISTRY_API: http://registry:5000/v2
     stdin_open: true
     tty: true
     links:
