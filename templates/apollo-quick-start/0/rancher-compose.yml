@@ -1,0 +1,34 @@
+version: '2'
+.catalog:
+  name: Apollo Quick Start
+  version: v0.9.0
+  description: Apollo（阿波罗）是携程框架部门研发的分布式配置中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
+  uuid: apollo-quick-start-v0.9.0
+  minimum_rancher_version: v1.6
+  questions:
+    - variable: "APOLLO_PROTAL_PORT"
+      label: "APOLLO_PROTAL_PORT"
+      description: "Port number for apollo protal"
+      type: "int"
+      default: "8070"
+      required: true
+    - variable: "APOLLO_PORT"
+      label: "APOLLO_PORT"
+      description: "Port number for apollo"
+      type: "int"
+      default: "8080"
+    - variable: "APOLLO_DB_PORT"
+      label: "APOLLO_DB_PORT"
+      description: "Port number for apollo db"
+      type: "int"
+      default: "3306"
+services:
+  apollo-quick-start:
+    scale: 1
+    start_on_create: true
+  apollo-db:
+    scale: 1
+    start_on_create: true
+  apollo-dbdata:
+    scale: 1
+    start_on_create: true

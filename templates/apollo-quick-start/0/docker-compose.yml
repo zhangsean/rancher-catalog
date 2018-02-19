@@ -1,0 +1,35 @@
+version: '2'
+services:
+  apollo-quick-start:
+    image: nobodyiam/apollo-quick-start
+    container_name: apollo-quick-start
+    depends_on:
+      - apollo-db
+    ports:
+      - "${APOLLO_PORT}:8080"
+      - "${APOLLO_PROTAL_PORT}:8070"
+    links:
+      - apollo-db
+
+  apollo-db:
+    image: mysql:5.7
+    container_name: apollo-db
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    depends_on:
+      - apollo-dbdata
+    ports:
+      - "${APOLLO_DB_PORT}:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    volumes_from:
+      - apollo-dbdata
+
+  apollo-dbdata:
+    image: alpine:latest
+    container_name: apollo-dbdata
+    volumes:
+      - /opt/apollo-db:/var/lib/mysql
+    labels:
+      io.rancher.container.start_once: 'true'
