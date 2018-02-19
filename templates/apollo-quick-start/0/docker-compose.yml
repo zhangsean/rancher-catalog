@@ -10,6 +10,8 @@ services:
       - "${APOLLO_PROTAL_PORT}:8070"
     links:
       - apollo-db
+    labels:
+      io.rancher.sidekicks: apollo-db
 
   apollo-db:
     image: mysql:5.7
@@ -25,6 +27,8 @@ services:
       - ./sql:/docker-entrypoint-initdb.d
     volumes_from:
       - apollo-dbdata
+    labels:
+      io.rancher.sidekicks: apollo-dbdata
 
   apollo-dbdata:
     image: alpine:latest
