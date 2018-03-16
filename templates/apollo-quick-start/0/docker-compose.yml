@@ -25,15 +25,4 @@ services:
       - "${APOLLO_DB_PORT}:3306"
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
-    volumes_from:
-      - apollo-dbdata
-    labels:
-      io.rancher.sidekicks: apollo-dbdata
-
-  apollo-dbdata:
-    image: alpine:latest
-    container_name: apollo-dbdata
-    volumes:
       - /opt/apollo-db:/var/lib/mysql
-    labels:
-      io.rancher.container.start_once: 'true'
